@@ -14,6 +14,8 @@ version = get_last_version()
 CHAMP_LIST_URL = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json"
 print(f"최신 버전: {version}")
 
+
+# ---- get champion images ----
 def listup_marksmen():  
     try:
         champion_list = requests.get(CHAMP_LIST_URL).json()["data"] #champ data
@@ -31,14 +33,14 @@ def listup_marksmen():
     return filterchampions
 champion_list = listup_marksmen()
 
-os.makedirs("images", exist_ok=True) #make images dir
+os.makedirs("images/champions", exist_ok=True) #make images dir
 
 #In DDragon, champ info tags, Marksman(adc)
 ADC_EXTRAS = {"Ziggs", "Nilah"}
 
 for champ_name in tqdm(champion_list, desc="원딜 챔피언 이미지 다운로드 중"):
     IMG_URL = f"https://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champ_name}.png"
-    IMG_PATH = f"images/{champ_name}.png"
+    IMG_PATH = f"images/champions/{champ_name}.png"
 
     #if not images, make them
     if not os.path.exists(IMG_PATH):
@@ -47,3 +49,37 @@ for champ_name in tqdm(champion_list, desc="원딜 챔피언 이미지 다운로
             f.write(IMG_DATA)
 
 print("원딜 챔피언 이미지 다운로드 완료")
+
+# ---- get rune images -----
+# ID: 8000 정밀, 8100 지배, 8200 마법, 8300 영감, 8400 결의
+RUNE_STYLES = {
+    8000: "Precision",
+    8100: "Domination",
+    8200: "Sorcery",
+    8300: "Inspiration",
+    8400: "Resolve",
+}
+
+# in DDragone RUNE_STYLES
+DDRAGONE_RUNE_STYLES = {
+    8000: "7201_Precision.png",
+    8100: "7200_Domination.png",
+    8200: "7202_Sorcery.png",
+    8300: "7203_Whimsy.png",
+    8400: "7204_Resolve.png",
+}
+
+os.makedirs("images/runes", exist_ok=True)
+
+for style_id in tqdm(RUNE_STYLES.keys(), desc="룬 스타일 아이콘 다운로드 중"):
+
+    IMG_PATH = f"images/runes/{style_id}.png"
+    IMG_URL = f"https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/{DDRAGONE_RUNE_STYLES[style_id]}"
+
+    #if not images, make them
+    if not os.path.exists(IMG_PATH):
+        IMG_DATA = requests.get(IMG_URL).content
+        with open(IMG_PATH, "wb") as f:
+            f.write(IMG_DATA)
+
+print("룬 아이콘 다운로드 완료")
