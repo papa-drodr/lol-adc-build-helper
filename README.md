@@ -1,3 +1,5 @@
+#오픈 소스 소프트웨어#
+
 # ⚙️ LoL ADC Build Helper ⚙️
 **LoL ADC Build Helper**는 리그 오브 레전드(League of Legends)에서 **원딜(ADC)** 유저를 위한  **통계 + 승률 예측** 도구입니다.  
 
