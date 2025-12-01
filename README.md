@@ -1,4 +1,4 @@
-#오픈 소스 소프트웨어#
+# 오픈 소스 소프트웨어 #
 
 # ⚙️ LoL ADC Build Helper ⚙️
 **LoL ADC Build Helper**는 리그 오브 레전드(League of Legends)에서 **원딜(ADC)** 유저를 위한  **통계 + 승률 예측** 도구입니다.  
@@ -38,91 +38,7 @@ name, tag = split_riot_id(RIOT_ID)
 
 def get_puuid(name: str, tag: str):
     url = f"https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{name}/{tag}"
-    HEADERS = {"X-Riot-Token": RIOT_API_KEY}
-    return requests.get(url, headers=HEADERS).json()["puuid"]
-
-MY_PUUID = get_puuid(name, tag)
-```
-
-> ⚠️ API 키는 절대 GitHub에 올리지 마세요!  
-> `.gitignore`에 이미 `secret_config.py`가 포함되어 있습니다.
-
----
-
-## 데이터 수집 & 모델 학습
-
-1. **경기 데이터 수집**
-```bash
-python load_my_matches.py
-```
-→ `data/my_matches_raw.jsonl` 생성
-
-2. **CSV 전처리 생성**
-```bash
-python build_my_stats.py
-```
-→ `data/my_matches_ml.csv` 생성
-
-3. **모델 학습**
-```bash
-python analyze_my_winrate.py --train
-```
-→ `data/my_win_model.joblib` 생성
-
----
-
-## 이미지 생성
-
-```bash
-python mkimg.py
-```
-→ `data/images` 생성 
-
----
-
-## GUI 실행
-
-```bash
-python lol-adc-builder-helper.py
-```
-
-GUI가 실행되면 챔피언 목록이 표시됩니다.  
-클릭 시 개인 평균 통계, 최빈 코어 아이템, 예측 승률이 자동 표시됩니다.
-
----
-
-## 📂 폴더 구조
-
-```
-lol-adc-build-helper/
-├── lol-adc-builder-helper.py   # GUI 메인
-├── analyze_my_winrate.py       # 모델 학습/예측
-├── build_my_stats.py           # CSV 전처리
-├── load_my_matches.py          # Riot API 데이터 수집
-├── mkimg.py                    # 챔피언/룬 이미지 다운로드
-├── secret_config.py            # API 키 / PUUID 설정
-├── data/                       # 저장된 데이터
-└── images/                     # 챔피언, 룬 아이콘
-```
-
-## 📱사용 기술
-
-| 분류 | 기술 |
-|------|------|
-| 언어 | Python 3.12 |
-| 데이터 | pandas, requests, joblib |
-| 머신러닝 | scikit-learn (RandomForestClassifier) |
-| GUI | CustomTkinter, PIL |
-| API | Riot API, Data Dragon |
-| 기타 | tqdm, argparse, collections |
-
----
-
-## 🧑‍💻 개발자 정보
-
-- **이름:** thisaccountisdiff  
-- **학교:** 서울과학기술대학교 컴퓨터공학과  
-- **프로젝트 목적:** 개인 경기 데이터 기반 원딕 빌드 및 승률 예측 자동화  
+    HEADERS = {"X-Riot-Token": RIOT_AP딜 빌드 및 승률 예측 자동화  
 - **GitHub:** [https://github.com/papa-drodr](https://github.com/papa-drodr/lol-adc-build-helper)
 
 ---
