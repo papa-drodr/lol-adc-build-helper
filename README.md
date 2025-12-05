@@ -1,5 +1,8 @@
+# 오픈 소스 프로그래밍 #
 # ⚙️ LoL ADC Build Helper ⚙️
 **LoL ADC Build Helper**는 리그 오브 레전드(League of Legends)에서 **원딜(ADC)** 유저를 위한  **통계 + 승률 예측** 도구입니다.  
+
+![데모 이미지](./demo.png "demo")
 
 Riot Games의 **Data Dragon API**와 **Riot Match API**를 활용하여 개인 경기 데이터를 분석하고, 파이선(`python`)과 머신러닝 모델(`scikit-learn`)을 통해 각 챔피언별  **통계**와 **예측 승률**를 제공합니다.
 
@@ -120,7 +123,7 @@ lol-adc-build-helper/
 
 - **이름:** thisaccountisdiff  
 - **학교:** 서울과학기술대학교 컴퓨터공학과  
-- **프로젝트 목적:** 개인 경기 데이터 기반 원딕 빌드 및 승률 예측 자동화  
+- **프로젝트 목적:** 개인 경기 데이터 기반 원딜 빌드 및 승률 예측 자동화  
 - **GitHub:** [https://github.com/papa-drodr](https://github.com/papa-drodr/lol-adc-build-helper)
 
 ---
